@@ -1,20 +1,14 @@
 import "./Home.css";
 import teapotIcon from "../../data/icons/teapot.png";
-import mintImage from "../../data/images/mint_tea.jpeg";
-import matchaImage from "../../data/images/matcha.jpeg";
-import tulsiImage from "../../data/images/tulsi.jpeg";
-import SearchBar from "../SearchBar/SearchBar";
+import { imagesToIds } from '../../data/teaImages';
 import { useNavigate } from "react-router-dom";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Home = ({ subscriptions, setSubscriptions, allSubscriptions }) => {
   const navigate = useNavigate();
-  console.log("Subscriptions array:", subscriptions);
-
-  const imagesToIds = {
-    2: matchaImage,
-    3: tulsiImage,
-    4: mintImage,
-  };
+  console.log("subscriptions array:", subscriptions);
+  console.log("setSubscriptions array:", setSubscriptions);
+  console.log("allSubscriptions array:", allSubscriptions);
 
   return (
     <main className="home-main">

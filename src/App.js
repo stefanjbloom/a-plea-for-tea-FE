@@ -1,8 +1,8 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from './/components/Home/Home';
-import SubscriptionDetails from './/components/SubscriptionDetails/SubscriptionDetails';
+import Home from './components/Home/Home';
+import SubscriptionDetails from './components/SubscriptionDetails/SubscriptionDetails';
 
 function App() {
   const [subscriptions, setSubscriptions] = useState([])
@@ -17,8 +17,9 @@ function App() {
       const response = await fetch('http://localhost:3000/api/v1/subscriptions');
       if (response.ok) {
         const data = await response.json();
-        const subscriptionsArray = Array.isArray(data) ? data : [];
-        console.log("response: ", data);
+        const subscriptionsArray = data.data.map(subscription => ({
+          id: subscription.id,
+          ...subscription.attributes}));
         setSubscriptions(subscriptionsArray);
       } else {
         console.error('Response was not ok:', await response.text());

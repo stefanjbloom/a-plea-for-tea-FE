@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const Home = ({ subscriptions }) => {
 
   const navigate = useNavigate();
-
+  console.log("Subscriptions array:", subscriptions);
   return(
     <main className='home-main'>
       <SearchBar/>

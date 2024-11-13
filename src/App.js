@@ -1,23 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Home from './/components/Home/Home';
+import SubscriptionDetails from './/components/SubscriptionDetails/SubscriptionDetails';
 
 function App() {
+  const [subscriptions, setSubscriptions] = useState([])
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    fetchAllSubscriptions();
+  }, [])
+
+  const fetchAllSubscriptions = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/v1/subscriptions');
+      if (response.ok) {
+        const data = await response.json();
+        const subscriptionsArray = Array.isArray(data) ? data : [];
+        console.log("response: ", data);
+        setSubscriptions(subscriptionsArray);
+      } else {
+        console.error('Response was not ok:', await response.text());
+        setErrorMessage('Failed to fetch subscriptions data');
+      }
+    } catch (error) {
+      console.error('Error fetching subscriptions:', error);
+      setErrorMessage('An error occurred while fetching subscriptions data');
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<Home subscriptions={subscriptions} setSubscriptions={setSubscriptions}/>} />
+        <Route path="/subscriptions/:id" element={<SubscriptionDetails/>} />
+        <Route path="*" element={<h2>Nothing here - please go back!</h2>} />
+      </Routes>
     </div>
   );
 }

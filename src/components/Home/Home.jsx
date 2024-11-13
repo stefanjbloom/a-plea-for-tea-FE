@@ -6,7 +6,7 @@ import tulsiImage from '../../data/images/tulsi.jpeg';
 import SearchBar from '../SearchBar/SearchBar'
 import { useNavigate } from 'react-router-dom'
 
-const Home = ({ subscriptions }) => {
+const Home = ({ subscriptions, setSubscriptions }) => {
 
   const navigate = useNavigate();
   console.log("Subscriptions array:", subscriptions);
@@ -19,7 +19,7 @@ const Home = ({ subscriptions }) => {
 
   return(
     <main className='home-main'>
-      <SearchBar/>
+      <SearchBar subscriptions={subscriptions} setSubscriptions={setSubscriptions}/>
       <div className='home-div'>
         <h1 className='home-header'>A Plea for Tea Subscription Service</h1>
           <img className='tea-icon' alt='Teapot Icon' src={teapotIcon}></img>

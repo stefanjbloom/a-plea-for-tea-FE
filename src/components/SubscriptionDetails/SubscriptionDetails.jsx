@@ -1,12 +1,14 @@
 import "./SubscriptionDetails.css";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { imagesToIds } from "../../data/teaImages";
+import homeIcon from "../../data/icons/home.png";
 
 const SubscriptionDetails = () => {
   const { id } = useParams();
   const [subscription, setSubscription] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchASubscription(id);
@@ -27,31 +29,39 @@ const SubscriptionDetails = () => {
       },
       body: JSON.stringify({
         subscription: {
-          status: "canceled"
+          status: "canceled",
         },
       }),
     })
-    .then((response) => response.json())
-    .then((data) => {
-      setIsModalOpen(false);
-      setSubscription(data.data)
-    })
-    .catch((error) => console.error("Error occurred while cancelling:", error))
+      .then((response) => response.json())
+      .then((data) => {
+        setIsModalOpen(false);
+        setSubscription(data.data);
+      })
+      .catch((error) =>
+        console.error("Error occurred while cancelling:", error)
+      );
   }
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
+  const handleHomeClick = () => {
+    navigate("/");
+  };
   if (!subscription) return <p>Loading subscription details...</p>;
 
   const subscriptionImage = imagesToIds[Number(subscription.id)];
 
   return (
-    <div className="subscription-overlay" key={subscription.id}>
+    <div className="subscription-overlay">
       <h2 className="subscription-title">
         {subscription.attributes.title} Subscription
       </h2>
+      <button className="home-button" onClick={handleHomeClick}>
+        <img src={homeIcon} alt="Go Home" className="home-icon" />
+      </button>
       <img src={subscriptionImage} alt="tea" />
       <ul className="subscription-list">
         <li className="subscription-price">
@@ -87,25 +97,26 @@ const SubscriptionDetails = () => {
       </ul>
 
       <button className="cancel-button" onClick={() => setIsModalOpen(true)}>
-        Click to Cancel Subscription
+        Click to Toggle Subscription
       </button>
 
       {isModalOpen && (
         <div>
           <h2 className="modal-header">
-            Are you sure you'd like to cancel?
+            Are you sure you'd like to activate/cancel?
           </h2>
-            <button
-              className="yes-cancel"
-              onClick={() => cancelSubscription(subscription.id)}
-              > Yes, Cancel
-            </button>
-            <button
-              className="no-cancel"
-              onClick={closeModal} 
-              > No, don't Cancel
-            </button>
-          </div>
+          <button
+            className="yes-cancel"
+            onClick={() => cancelSubscription(subscription.id)}
+          >
+            {" "}
+            Yes, Cancel
+          </button>
+          <button className="no-cancel" onClick={closeModal}>
+            {" "}
+            No, don't Cancel
+          </button>
+        </div>
       )}
     </div>
   );

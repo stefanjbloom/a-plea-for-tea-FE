@@ -9,9 +9,9 @@ const SearchBar = ({ setSubscriptions, allSubscriptions }) => {
     setSearchInput(query);
 
     if (query === "") {
-      setSubscriptions(allSubscriptions)
+      setSubscriptions(allSubscriptions);
     } else {
-      const filterSubscriptions = allSubscriptions.filter(subscription => 
+      const filterSubscriptions = allSubscriptions.filter((subscription) =>
         subscription.title.toLowerCase().includes(query)
       );
       setSubscriptions(filterSubscriptions);

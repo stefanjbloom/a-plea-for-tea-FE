@@ -1,6 +1,6 @@
 import "./Home.css";
 import teapotIcon from "../../data/icons/teapot.png";
-import { imagesToIds } from '../../data/teaImages';
+import { imagesToIds } from "../../data/teaImages";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 

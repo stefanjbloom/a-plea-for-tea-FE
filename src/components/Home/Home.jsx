@@ -20,7 +20,7 @@ const Home = ({ subscriptions, setSubscriptions, allSubscriptions }) => {
           A Plea for Tea Subscription Service
         <img className="tea-icon" alt="Teapot Icon" src={teapotIcon}></img>
         </h1>
-        <h2>Click on an Image to get Subscription Info!</h2>
+        <h2>Click a Card to get Subscription Info!</h2>
         <div className="subscription-list">
           {subscriptions.map((subscription) => {
             const subscriptionImage = imagesToIds[subscription.id];

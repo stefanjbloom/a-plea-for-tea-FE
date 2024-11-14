@@ -1,5 +1,5 @@
 .home-main {
-text-align: center;
+  text-align: center;
 }
 
 .home-div {
@@ -7,7 +7,7 @@ text-align: center;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #eebf85;
+  background-color: peachpuff;
 }
 
 .home-header {
@@ -19,22 +19,32 @@ text-align: center;
   align-items: center;
 }
 
-.search-input {
-  border-radius: 4px;
-  font-size: larger;
-  width: 260px;
-  margin: 10px;
-  padding: 5px;
-}
-
 .tea-icon {
   width: 45px;
   margin: 5px;
 }
 
+.subscription-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+
+.subscription-index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 25px;
+  border-style: solid;
+  border-radius: 8px;
+  width: 300px;
+}
+
 .subscription-title {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.75rem;
 }
 
 .subscription-price {
@@ -44,7 +54,7 @@ text-align: center;
 
 .subscription-image {
   border-radius: 25px;
-  background: #73AD21;
+  background: #aacf76;
   padding: 20px;
   width: 230px;
   height: 180px;

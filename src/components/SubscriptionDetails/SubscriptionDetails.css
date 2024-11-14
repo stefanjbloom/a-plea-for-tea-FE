@@ -1,0 +1,65 @@
+.subscription-overlay {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  background-color: peachpuff;
+}
+
+.subscription-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: none;
+}
+.image {
+  border-radius: 8px;
+}
+
+.subscription-list,
+.customer-list,
+.tea-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px;
+}
+
+.subscription-status,
+.customer-name,
+.tea-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.cancel-button {
+  margin: 5px;
+  padding: 13px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+}
+
+.modal-header {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.yes-cancel,
+.no-cancel {
+  padding: 10px 20px;
+  margin: 4px;
+  border-radius: 5px;
+}

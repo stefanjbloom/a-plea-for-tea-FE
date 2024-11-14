@@ -62,7 +62,7 @@ const SubscriptionDetails = () => {
       <button className="home-button" onClick={handleHomeClick}>
         <img src={homeIcon} alt="Go Home" className="home-icon" />
       </button>
-      <img src={subscriptionImage} alt="tea" />
+      <img className='image' src={subscriptionImage} alt="tea" />
       <ul className="subscription-list">
         <li className="subscription-price">
           Price: {subscription.attributes.price}
@@ -72,14 +72,14 @@ const SubscriptionDetails = () => {
         </li>
       </ul>
       <ul className="customer-list">
-        <li className="customer-price">
+        <li className="customer-name">
           Customer Name: {subscription.attributes.customer.firstname}{" "}
           {subscription.attributes.customer.lastname}
         </li>
-        <li className="customer-status">
+        <li className="customer-email">
           Email: {subscription.attributes.customer.email}
         </li>
-        <li className="customer-status">
+        <li className="customer-address">
           Address: {subscription.attributes.customer.address}
         </li>
       </ul>

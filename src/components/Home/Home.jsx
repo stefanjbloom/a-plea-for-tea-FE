@@ -6,9 +6,6 @@ import SearchBar from "../SearchBar/SearchBar";
 
 const Home = ({ subscriptions, setSubscriptions, allSubscriptions }) => {
   const navigate = useNavigate();
-  console.log("subscriptions array:", subscriptions);
-  console.log("setSubscriptions array:", setSubscriptions);
-  console.log("allSubscriptions array:", allSubscriptions);
 
   return (
     <main className="home-main">

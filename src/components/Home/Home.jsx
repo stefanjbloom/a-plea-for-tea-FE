@@ -15,8 +15,12 @@ const Home = ({ subscriptions, setSubscriptions, allSubscriptions }) => {
         allSubscriptions={allSubscriptions}
       />
       <div className="home-div">
-        <h1 className="home-header">A Plea for Tea Subscription Service</h1>
+        <h1 className="home-header">
         <img className="tea-icon" alt="Teapot Icon" src={teapotIcon}></img>
+          A Plea for Tea Subscription Service
+        <img className="tea-icon" alt="Teapot Icon" src={teapotIcon}></img>
+        </h1>
+        <h2>Click a Card to get Subscription Info!</h2>
         <div className="subscription-list">
           {subscriptions.map((subscription) => {
             const subscriptionImage = imagesToIds[subscription.id];

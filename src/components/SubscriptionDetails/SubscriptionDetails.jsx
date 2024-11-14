@@ -6,6 +6,7 @@ import { imagesToIds } from "../../data/teaImages";
 const SubscriptionDetails = () => {
   const { id } = useParams();
   const [subscription, setSubscription] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchASubscription(id);
@@ -18,12 +19,36 @@ const SubscriptionDetails = () => {
       .catch((error) => console.error("Error :", error));
   }
 
+  function cancelSubscription(id) {
+    fetch(`http://localhost:3000/api/v1/subscriptions/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        subscription: {
+          status: "canceled"
+        },
+      }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      setIsModalOpen(false);
+      setSubscription(data.data)
+    })
+    .catch((error) => console.error("Error occurred while cancelling:", error))
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   if (!subscription) return <p>Loading subscription details...</p>;
 
   const subscriptionImage = imagesToIds[Number(subscription.id)];
 
   return (
-    <div className="subscription-overlay">
+    <div className="subscription-overlay" key={subscription.id}>
       <h2 className="subscription-title">
         {subscription.attributes.title} Subscription
       </h2>
@@ -60,6 +85,28 @@ const SubscriptionDetails = () => {
           Brewtime: {subscription.attributes.tea.brewtime} minutes
         </li>
       </ul>
+
+      <button className="cancel-button" onClick={() => setIsModalOpen(true)}>
+        Click to Cancel Subscription
+      </button>
+
+      {isModalOpen && (
+        <div>
+          <h2 className="modal-header">
+            Are you sure you'd like to cancel?
+          </h2>
+            <button
+              className="yes-cancel"
+              onClick={() => cancelSubscription(subscription.id)}
+              > Yes, Cancel
+            </button>
+            <button
+              className="no-cancel"
+              onClick={closeModal} 
+              > No, don't Cancel
+            </button>
+          </div>
+      )}
     </div>
   );
 };

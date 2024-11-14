@@ -110,11 +110,11 @@ const SubscriptionDetails = () => {
             onClick={() => cancelSubscription(subscription.id)}
           >
             {" "}
-            Yes, Cancel
+            Yes
           </button>
           <button className="no-cancel" onClick={closeModal}>
             {" "}
-            No, don't Cancel
+            No
           </button>
         </div>
       )}
